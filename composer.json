@@ -1,0 +1,59 @@
+{
+    "name": "juanparati/trustpilot",
+    "description": "Trustpilot library for Laravel 9+",
+    "keywords": [
+        "laravel",
+        "trustpilot"
+    ],
+    "homepage": "https://github.com/juanparati/trustpilot",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "McCaulay Hudson",
+            "role": "Developer"
+        },
+        {
+            "name": "Juan Lago",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0|^8.1",
+        "illuminate/support": "^9.0",
+        "illuminate/contracts": "^9.0",
+        "guzzlehttp/guzzle": "~6.0|^7.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0",
+        "phpunit/phpunit": "^8.5|^9.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Juanparati\\Trustpilot\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Juanparati\\Trustpilot\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Juanparati\\Trustpilot\\Providers\\TrustpilotServiceProvider"
+            ],
+            "aliases": {
+                "Trustpilot": "Juanparati\\Trustpilot\\Facades\\TrustpilotFacade"
+            }
+        }
+    }
+}
