@@ -9,7 +9,7 @@ This library is based on [igdwebdev/laravel-trustpilot](https://github.com/igdwe
 You can install the package via composer:
 
 ```bash
-composer require juanparati/larapilot
+composer require juanparati/trustpilot
 ```
 
 ## Official Documentation

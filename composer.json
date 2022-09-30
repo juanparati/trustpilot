@@ -22,7 +22,7 @@
         "php": "^8.0|^8.1",
         "illuminate/support": "^9.0",
         "illuminate/contracts": "^9.0",
-        "guzzlehttp/guzzle": "~6.0|^7.0",
+        "guzzlehttp/guzzle": "^7.0",
         "ext-json": "*"
     },
     "require-dev": {
