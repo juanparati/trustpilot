@@ -12,6 +12,12 @@ You can install the package via composer:
 composer require juanparati/trustpilot
 ```
 
+Configuration:
+
+```bash
+artisan vendor:publish --provider="Juanparati\Trustpilot\Providers\TrustpilotServiceProvider"
+```
+
 ## Official Documentation
 - [Trustpilot Documentation](https://developers.trustpilot.com/)
 
@@ -293,7 +299,6 @@ $businessUnits = Trustpilot::businessUnit()->categories()->first()->businessUnit
 
 - [McCaulay Hudson](https://github.com/mccaulay)
 - [Juan Lago](https://github.com/juanparati)
-- [All Contributors](../../contributors)
 
 ## License
 

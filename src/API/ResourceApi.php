@@ -2,6 +2,7 @@
 
 namespace Juanparati\Trustpilot\API;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Juanparati\Trustpilot\API\Api;
 use Juanparati\Trustpilot\Query\Queryable;
 
@@ -13,6 +14,7 @@ abstract class ResourceApi extends Api implements Queryable
      * @param string $id
      * @param array $params
      * @return mixed
+     * @throws GuzzleException
      */
     public function find(string $id, array $params = [])
     {

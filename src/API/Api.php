@@ -3,6 +3,7 @@
 namespace Juanparati\Trustpilot\API;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Cache;
 
 class Api
@@ -10,7 +11,7 @@ class Api
     /**
      * The Guzzle client.
      *
-     * @var GuzzleHttp\Client
+     * @var \GuzzleHttp\Client
      */
     private $client;
 
@@ -175,6 +176,7 @@ class Api
      * @param string $method
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     protected function request(string $method, string $path, array $query = [], array $params = [], bool $auth = false)
     {
@@ -202,6 +204,7 @@ class Api
      * @param array $query
      * @param bool $auth
      * @return object
+     * @throws GuzzleException
      */
     protected function get(string $path, array $query = [], bool $auth = false)
     {
@@ -216,6 +219,7 @@ class Api
      * @param array $params
      * @param bool $auth
      * @return object
+     * @throws GuzzleException
      */
     protected function post(string $path, array $query = [], array $params = [], bool $auth = false)
     {
@@ -230,6 +234,7 @@ class Api
      * @param array $params
      * @param bool $auth
      * @return object
+     * @throws GuzzleException
      */
     protected function put(string $path, array $query = [], array $params = [], bool $auth = false)
     {
@@ -244,6 +249,7 @@ class Api
      * @param array $params
      * @param bool $auth
      * @return object
+     * @throws GuzzleException
      */
     protected function delete(string $path, array $query = [], array $params = [], bool $auth = false)
     {
