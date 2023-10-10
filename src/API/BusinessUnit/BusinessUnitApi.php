@@ -28,7 +28,7 @@ class BusinessUnitApi extends ResourceApi
     public function perform(array $query, bool $search = false): Collection
     {
         $response = $this->get($search ? '/search' : '/all', $query);
-        return collect($response->businessUnits)->map(function ($businessUnit) {
+        return collect($response->businessUnits ?? [])->map(function ($businessUnit) {
             return (new BusinessUnit())->data($businessUnit);
         });
     }
@@ -48,7 +48,7 @@ class BusinessUnitApi extends ResourceApi
             'locale' => $locale,
         ]));
 
-        return collect($response->categories)->map(function ($category) {
+        return collect($response->categories ?? [])->map(function ($category) {
             return (new Category())->data($category);
         });
     }
