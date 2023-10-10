@@ -4,51 +4,53 @@ namespace Juanparati\Trustpilot\API;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class Api
 {
     /**
      * The Guzzle client.
      *
-     * @var \GuzzleHttp\Client
+     * @var PendingRequest
      */
-    private $client;
+    private PendingRequest $client;
 
     /**
      * The trustpilot configuration.
      *
      * @var array
      */
-    private $config;
+    private mixed $config;
 
     /**
      * The api endpoint.
      *
      * @var string
      */
-    private $endpoint;
+    private string $endpoint;
 
     /**
      * The rest object path.
      *
      * @var string
      */
-    private $path;
+    private string $path;
 
     /**
      * The access token cache key.
      *
      * @var string
      */
-    private $accessTokenKey;
+    private string $accessTokenKey;
 
     /**
      * The refresh token cache key.
      *
      * @var string
      */
-    private $refreshTokenKey;
+    private string $refreshTokenKey;
 
     /**
      * Initialise the Api
@@ -63,13 +65,7 @@ class Api
         $this->accessTokenKey = $this->config['cache']['prefix'] . '.access_token';
         $this->refreshTokenKey = $this->config['cache']['prefix'] . '.refresh_token';
 
-        // Initalise the guzzle client
-        $this->client = new Client([
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'apikey' => $this->config['api']['key'],
-            ],
-        ]);
+        $this->client = Http::withHeaders(['apikey' => $this->config['api']['key']]);
     }
 
     /**
@@ -87,6 +83,7 @@ class Api
     /**
      * Set the endpoint of the api.
      *
+     * @param string $endpoint
      * @return self
      */
     protected function setEndpoint(string $endpoint): self
@@ -98,6 +95,7 @@ class Api
     /**
      * Set the path of the api.
      *
+     * @param string $path
      * @return self
      */
     protected function setPath(string $path): self
@@ -111,7 +109,7 @@ class Api
      *
      * @return string|null
      */
-    protected function getAccessToken()
+    protected function getAccessToken(): ?string
     {
         // Get from cache
         if (Cache::has($this->accessTokenKey)) {
@@ -146,7 +144,7 @@ class Api
      * @param array $params
      * @return string|null
      */
-    private function requestAccessToken($method, $grantType, $params)
+    private function requestAccessToken($method, $grantType, $params): ?string
     {
         $params['grant_type'] = $grantType;
 
@@ -174,27 +172,33 @@ class Api
      * Perform a request to the API service.
      *
      * @param string $method
+     * @param string $path
+     * @param array $query
      * @param array $params
-     * @return object
-     * @throws GuzzleException
+     * @param bool $auth
+     * @return object|null
+     * @throws \Exception
      */
-    protected function request(string $method, string $path, array $query = [], array $params = [], bool $auth = false)
+    protected function request(string $method, string $path, array $query = [], array $params = [], bool $auth = false) : object
     {
-        $headers = [];
+
+        $body = [];
 
         // If auth is required, append access token
         if ($auth) {
-            $headers['Authorization'] = 'Bearer ' . $this->getAccessToken();
+            $body['headers'] = 'Bearer ' . $this->getAccessToken();
         }
 
+        if (!empty($query))
+            $body['query'] = $query;
+
+        // Some Truspilot endpoints will raise a 403 error in case that body is empty
+        if (!empty($params))
+            $body['json'] = $params;
+
         // Perform request
-        $response = $this->client->request($method, $this->endpoint . $this->path . $path, [
-            'query' => $query,
-            'json' => $params,
-            'headers' => $headers,
-        ]);
-        $contents = (string) $response->getBody();
-        return json_decode($contents);
+        $response = $this->client->send($method, $this->endpoint . $this->path . $path, $body);
+        return $response->object();
     }
 
     /**
