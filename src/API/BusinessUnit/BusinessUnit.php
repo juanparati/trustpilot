@@ -9,12 +9,6 @@ use Juanparati\Trustpilot\Query\Builder;
 
 class BusinessUnit extends Resource
 {
-    /**
-     * The business unit id.
-     *
-     * @var string|null
-     */
-    public ?string $id = null;
 
     /**
      * Initialise the business unit with an optional business unit id.

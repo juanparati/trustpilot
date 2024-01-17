@@ -2,6 +2,7 @@
 
 namespace Juanparati\Trustpilot\API\BusinessUnit\Product;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Juanparati\Trustpilot\API\BusinessUnit\Review\Product\ImportedProductReviewApi;
 use Juanparati\Trustpilot\API\BusinessUnit\Review\Product\ProductReviewApi;
 use Juanparati\Trustpilot\API\BusinessUnit\Review\Product\ProductReviewSummary;
@@ -51,6 +52,7 @@ class ProductApi extends ResourceApi
      *
      * @param array $products
      * @return Collection
+     * @throws GuzzleException
      */
     public function save(array $products) : Collection
     {
@@ -79,6 +81,7 @@ class ProductApi extends ResourceApi
      * @param array $skus
      * @param array $urls
      * @return Resource
+     * @throws GuzzleException
      */
     public function reviewSummary(array $skus = [], array $urls = []) : Resource
     {
@@ -96,6 +99,7 @@ class ProductApi extends ResourceApi
      * @param array $skus
      * @param string $locale
      * @return Collection
+     * @throws GuzzleException
      */
     public function reviewAggregatedSummaries(array $skus = [], string $locale = 'en-GB') : Collection
     {
@@ -114,6 +118,7 @@ class ProductApi extends ResourceApi
      *
      * @param array $skus
      * @return Collection
+     * @throws GuzzleException
      */
     public function reviewBatchSummaries(array $skus = []) : Collection
     {
@@ -141,6 +146,7 @@ class ProductApi extends ResourceApi
      *
      * @param array|string $sku
      * @return mixed
+     * @throws GuzzleException
      */
     public function importedReviewSummary($sku) : Resource
     {

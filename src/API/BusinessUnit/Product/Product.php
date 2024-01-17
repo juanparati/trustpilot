@@ -2,6 +2,7 @@
 
 namespace Juanparati\Trustpilot\API\BusinessUnit\Product;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Juanparati\Trustpilot\API\Resource;
 
 
@@ -11,6 +12,7 @@ class Product extends Resource
      * Save the product.
      *
      * @return Resource
+     * @throws GuzzleException
      */
     public function save() : Resource
     {
@@ -22,7 +24,6 @@ class Product extends Resource
      *
      * @return array
      */
-
     private function toSaveArray(): array
     {
         return [
