@@ -18,7 +18,7 @@ class BusinessUnit extends Resource
      */
     public function __construct(?string $businessUnitId = null)
     {
-        $this->id = $businessUnitId ?? config('trustpilot.unit_id');
+        parent::__construct(['id' => $businessUnitId ?? config('trustpilot.unit_id')]);
     }
 
     /**
