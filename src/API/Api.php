@@ -2,7 +2,6 @@
 
 namespace Juanparati\Trustpilot\API;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Cache;
@@ -181,7 +180,6 @@ class Api
      */
     protected function request(string $method, string $path, array $query = [], array $params = [], bool $auth = false) : object
     {
-
         $body = [];
 
         // If auth is required, append access token

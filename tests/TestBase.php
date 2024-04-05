@@ -29,7 +29,7 @@ abstract class TestBase extends TestCase
      * @param \Illuminate\Foundation\Application $app
      */
     protected function getEnvironmentSetUp($app) {
-        // Credentials used for testing purposers are saved into ".secrets" directory.
+        // Credentials used for testing purposes are saved into ".secrets" directory.
         $config = json_decode(file_get_contents(__DIR__ . '/.secrets/config.json'), true);
         $app['config']->set('trustpilot', $config);
 
