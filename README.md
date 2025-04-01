@@ -1,4 +1,4 @@
-# Laravel 9+ Trustpilot library
+# Laravel Trustpilot library
 
 A Trustpilot library for Laravel.
 
