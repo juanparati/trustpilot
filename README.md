@@ -1,6 +1,6 @@
 # Laravel 9+ Trustpilot library
 
-A Trustpilot library for Laravel 9+.
+A Trustpilot library for Laravel.
 
 This library is based on [igdwebdev/laravel-trustpilot](https://github.com/igdwebdev/laravel-trustpilot).
 
