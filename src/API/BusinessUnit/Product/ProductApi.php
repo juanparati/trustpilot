@@ -26,7 +26,7 @@ class ProductApi extends ResourceApi
      *
      * @param string|null $businessUnitId
      */
-    public function __construct(string $businessUnitId = null)
+    public function __construct(?string $businessUnitId = null)
     {
         parent::__construct();
         $this->businessUnitId = $businessUnitId ?? config('trustpilot.unit_id');

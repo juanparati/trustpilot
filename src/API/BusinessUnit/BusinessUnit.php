@@ -11,7 +11,7 @@ class BusinessUnit extends Resource
 {
 
     /**
-     * Initialise the business unit with an optional business unit id.
+     * Initialize the business unit with an optional business unit id.
      * If no business unit id is given, it uses the business unit from the config.
      *
      * @param null|string $businessUnitId
@@ -64,11 +64,11 @@ class BusinessUnit extends Resource
     /**
      * Get the business categories.
      *
-     * @param string $country
-     * @param string $locale
+     * @param null|string $country
+     * @param null|string $locale
      * @return mixed
      */
-    public function categories(string $country = null, string $locale = null)
+    public function categories(?string $country = null, ?string $locale = null)
     {
         return (new BusinessUnitApi())->categories($this->id, $country, $locale);
     }

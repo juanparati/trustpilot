@@ -37,11 +37,11 @@ class BusinessUnitApi extends ResourceApi
      * Get the business categories.
      *
      * @param string $businessUnitId
-     * @param string $country
-     * @param string $locale
+     * @param null|string $country
+     * @param null|string $locale
      * @return mixed
      */
-    public function categories(string $businessUnitId, string $country = null, string $locale = null)
+    public function categories(string $businessUnitId, ?string $country = null, ?string $locale = null)
     {
         $response = $this->get('/' . $businessUnitId . '/categories', array_filter([
             'country' => $country,
