@@ -74,8 +74,7 @@ class Api
      */
     public static function __callStatic($name, $arguments)
     {
-        $class = get_called_class();
-        $instance = new $class();
+        $instance = new static();
         return call_user_func_array([$instance, $name], $arguments);
     }
 

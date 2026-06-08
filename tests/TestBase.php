@@ -17,7 +17,7 @@ abstract class TestBase extends TestCase
      * @param \Illuminate\Foundation\Application $app
      * @return string[]
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [TrustpilotServiceProvider::class];
     }
@@ -28,7 +28,7 @@ abstract class TestBase extends TestCase
      *
      * @param \Illuminate\Foundation\Application $app
      */
-    protected function getEnvironmentSetUp($app) {
+    protected function getEnvironmentSetUp($app): void {
         // Credentials used for testing purposes are saved into ".secrets" directory.
         $config = json_decode(file_get_contents(__DIR__ . '/.secrets/config.json'), true);
         $app['config']->set('trustpilot', $config);

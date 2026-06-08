@@ -3,7 +3,6 @@
 namespace Juanparati\Trustpilot\API\BusinessUnit\Review\Invitation;
 
 use Carbon\CarbonImmutable;
-use DateTime;
 use Juanparati\Trustpilot\API\Api;
 use Juanparati\Trustpilot\API\BusinessUnit\Review\Invitation\Template;
 use Juanparati\Trustpilot\API\BusinessUnit\Review\Review;
@@ -137,7 +136,7 @@ class InvitationApi extends Api
         string $replyTo,
         string $senderName,
         ?string   $senderEmail = null,
-        ?DateTime $sendAt = null,
+        ?\DateTimeInterface $sendAt = null,
         ?string $templateId = null,
         ?string   $redirectUrl = null,
         array $tags = [],
@@ -225,7 +224,7 @@ class InvitationApi extends Api
      * @param \DateTime $date
      * @return void
      */
-    public function deleteBeforeDate(DateTime $date): void
+    public function deleteBeforeDate(\DateTimeInterface $date): void
     {
         $this->post('/invitation-data/delete', [], [
             'deleteOlderThan' => $date->format('Y-m-d\TH:i:s'),

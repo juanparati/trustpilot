@@ -9,54 +9,40 @@ class Builder
 {
     /**
      * The queryable resource.
-     *
-     * @var \Juanparati\Trustpilot\Query\Queryable
      */
-    private $queryable;
+    private Queryable $queryable;
 
     /**
      * The where conditions to restrict the results.
-     *
-     * @var array
      */
-    private $where = [];
+    private array $where = [];
 
     /**
      * Order the results by a column, ascending or descending.
-     *
-     * @var array
      */
-    private $order = [];
+    private array $order = [];
 
     /**
      * The number of items to pull back per page.
-     *
-     * @var null|int
      */
-    private $limit = null;
+    private ?int $limit = null;
 
     /**
      * The page to pull back.
-     *
-     * @var null|int
      */
-    private $page = null;
+    private ?int $page = null;
 
     /**
      * The offset.
-     *
-     * @var null|int
      */
-    private $offset = null;
+    private ?int $offset = null;
 
     /**
      * The array type.
      * 1 - Array
-     * 2 - Comma Seperated
-     *
-     * @var int
+     * 2 - Comma Separated
      */
-    private $arrayType = 1/*Array*/;
+    private int $arrayType = 1/*Array*/;
 
     /**
      * Initialise the builder with a queryable resource.

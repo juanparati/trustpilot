@@ -48,9 +48,9 @@ class Resource implements Arrayable, \JsonSerializable
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
-        return json_decode($this->jsonSerialize(), true);
+        return $this->data;
     }
 
 
@@ -105,8 +105,8 @@ class Resource implements Arrayable, \JsonSerializable
      *
      * @return string
      */
-    public function jsonSerialize() : string
+    public function jsonSerialize() : mixed
     {
-        return json_encode($this->data);
+        return $this->data;
     }
 }
